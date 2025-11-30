@@ -74,7 +74,10 @@ uninstall-dev:
     -sudo launchctl unload /Library/LaunchDaemons/com.blockandfocus.daemon.plist
     -sudo rm /Library/LaunchDaemons/com.blockandfocus.daemon.plist
     -sudo rm /Library/PrivilegedHelperTools/blockandfocus-daemon
-    @echo "Daemon uninstalled!"
+    @echo "Restoring DNS to automatic..."
+    -sudo networksetup -setdnsservers Wi-Fi Empty
+    -sudo dscacheutil -flushcache
+    @echo "Daemon uninstalled and DNS restored!"
 
 # Reload daemon (after rebuilding)
 reload-daemon: build-daemon

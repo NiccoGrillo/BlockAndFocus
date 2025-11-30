@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- Service identifier -->
+    <key>Label</key>
+    <string>com.blockandfocus.daemon</string>
+
+    <!-- Program to run -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Library/PrivilegedHelperTools/blockandfocus-daemon</string>
+    </array>
+
+    <!-- Run as root (required for port 53) -->
+    <key>UserName</key>
+    <string>root</string>
+
+    <!-- Start at system boot -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Keep the service running -->
+    <key>KeepAlive</key>
+    <dict>
+        <!-- Restart if it exits successfully (shouldn't happen) -->
+        <key>SuccessfulExit</key>
+        <false/>
+        <!-- Restart if it crashes -->
+        <key>Crashed</key>
+        <true/>
+    </dict>
+
+    <!-- Throttle restarts to prevent tight loops -->
+    <key>ThrottleInterval</key>
+    <integer>5</integer>
+
+    <!-- Environment variables -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>RUST_LOG</key>
+        <string>info</string>
+        <key>RUST_BACKTRACE</key>
+        <string>1</string>
+    </dict>
+
+    <!-- Logging -->
+    <key>StandardOutPath</key>
+    <string>/Library/Logs/BlockAndFocus/daemon.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Library/Logs/BlockAndFocus/daemon-error.log</string>
+
+    <!-- Resource limits -->
+    <key>SoftResourceLimits</key>
+    <dict>
+        <key>NumberOfFiles</key>
+        <integer>1024</integer>
+    </dict>
+
+    <!-- Working directory -->
+    <key>WorkingDirectory</key>
+    <string>/Library/Application Support/BlockAndFocus</string>
+</dict>
+</plist>

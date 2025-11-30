@@ -1,0 +1,42 @@
+[package]
+name = "blockandfocus-daemon"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[[bin]]
+name = "blockandfocus-daemon"
+path = "src/main.rs"
+
+[dependencies]
+blockandfocus-shared = { path = "../shared" }
+
+# Async runtime
+tokio = { workspace = true }
+
+# Serialization
+serde = { workspace = true }
+serde_json = { workspace = true }
+toml = { workspace = true }
+
+# DNS
+hickory-server = { workspace = true }
+hickory-resolver = { workspace = true }
+hickory-proto = { workspace = true }
+
+# Logging
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+
+# Error handling
+thiserror = { workspace = true }
+anyhow = { workspace = true }
+
+# Time
+chrono = { workspace = true }
+
+# Random for quiz
+rand = { workspace = true }
+
+# UUID for challenge IDs
+uuid = { version = "1.11", features = ["v4"] }

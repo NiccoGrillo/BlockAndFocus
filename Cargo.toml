@@ -1,0 +1,38 @@
+[workspace]
+resolver = "2"
+members = ["daemon", "shared", "app"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["BlockAndFocus Contributors"]
+repository = "https://github.com/niccologrillo/BlockAndFocus"
+
+[workspace.dependencies]
+# Async runtime
+tokio = { version = "1.41", features = ["full"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# DNS
+hickory-server = "0.25"
+hickory-resolver = "0.25"
+hickory-proto = "0.25"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Error handling
+thiserror = "2.0"
+anyhow = "1.0"
+
+# Time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Random for quiz
+rand = "0.8"
